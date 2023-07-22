@@ -13,9 +13,8 @@ public class Main {
     public static void main(String[] args) {
         String code = "public class Subject {\n" +
                 "    public static void main(String[] args) {\n" +
-                "        System.out.println(\"BUAHDIUAWHDIUWAH\";\n" +
+                "        System.out.println(\"BUAHDIUAWHDIUWAH\");\n" +
                 "    }\n" +
-
                 "}\n";
         JavaLexer javaLexer = new JavaLexer(CharStreams.fromString(code));
         CommonTokenStream tokens = new CommonTokenStream(javaLexer);

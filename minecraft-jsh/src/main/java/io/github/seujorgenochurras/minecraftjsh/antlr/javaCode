@@ -1,0 +1,14 @@
+public class MeuPau{
+    static int idk = 1;
+    public static void main(String[] args){
+        System.out.println("OI mãe");
+    }
+        public void onEnable() {
+            getCommand("world").setExecutor(new KitCommand());
+            getServer().getPluginManager().registerEvents(new OnLecternInteraction(), this);
+        }
+
+        public void onDisable() {
+           return;
+        }
+}
