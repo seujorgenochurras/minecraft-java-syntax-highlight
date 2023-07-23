@@ -1,8 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.parser;
-
-// Generated from JavaParser.g4 by ANTLR 4.13.0
-
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
+package io.github.seujorgenochurras.minecraftjsh.antlr.parser;// Generated from JavaParser.g4 by ANTLR 4.13.0
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
