@@ -15,6 +15,5 @@ public final class MinecraftJsh extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
     }
 }
