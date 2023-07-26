@@ -1,6 +1,6 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.symbol;
+package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.scope.Scope;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.Scope;
 
 public class Symbol { // A generic programming language symbol
     String name;      // All symbols at least have a name
@@ -11,8 +11,14 @@ public class Symbol { // A generic programming language symbol
     public Symbol(String name, Type type) { this(name); this.type = type; }
     public String getName() { return name; }
 
+    @Override
     public String toString() {
-        return getName();
+        return "Symbol{" +
+                "name='" + name + '\'' +
+                ", type=" + type
+                + "scope=" +
+                scope.getScopeName()+
+                '}';
     }
 
     public Scope getScope() {

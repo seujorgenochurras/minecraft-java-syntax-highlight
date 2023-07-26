@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.scope;
+package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope;
 
 public class LocalScope extends BaseScope{
     public LocalScope(Scope enclosingScope) {

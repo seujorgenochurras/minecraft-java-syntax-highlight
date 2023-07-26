@@ -1,13 +1,15 @@
 package io.github.seujorgenochurras.antlr;
 
 import io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer;
-import io.github.seujorgenochurras.minecraftjsh.antlr.listener.OnInvalidReference;
-import io.github.seujorgenochurras.minecraftjsh.antlr.listener.RefIdk;
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.ReferenceTreeDefiner;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.OnUnknownReference;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.jupiter.api.Test;
+
+import java.sql.Ref;
 
 class ParserTest {
 
@@ -36,12 +38,14 @@ class ParserTest {
     void methodTypeTest() {
         String code = """
                 public class MeuPau {
-                int a = j;
-                public void onDisable() {
+                int a = onDsable();
+                public void onDisable(int h, int p, String s) {
                     }
                     public int onDsable() {
+                    return 0;
                     }
                     public boolean onDisabe() {
+                        
                     }
                     public MeuPau onDisble() {
                     }
@@ -51,12 +55,15 @@ class ParserTest {
         JavaParser parser = new JavaParser(commonTokenStream);
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        OnInvalidReference onInvalidReference = new OnInvalidReference();
+        ReferenceTreeDefiner referenceTree = new ReferenceTreeDefiner();
+
         ParseTree tree = parser.compilationUnit();
 
-        walker.walk(onInvalidReference, tree);
-        RefIdk refIdk = new RefIdk(onInvalidReference.scopes, onInvalidReference.globals);
-        walker.walk(refIdk, tree);
+        walker.walk(referenceTree, tree);
+
+        OnUnknownReference unknownReference = new OnUnknownReference(referenceTree.getScopes(),
+                referenceTree.getReferences());
+        walker.walk(unknownReference, tree);
 
 
     }

@@ -1,31 +1,26 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.listener;
+package io.github.seujorgenochurras.minecraftjsh.antlr.syntax;
 
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParserBaseListener;
-import io.github.seujorgenochurras.minecraftjsh.antlr.scope.GlobalScope;
-import io.github.seujorgenochurras.minecraftjsh.antlr.scope.LocalScope;
-import io.github.seujorgenochurras.minecraftjsh.antlr.scope.Scope;
-import io.github.seujorgenochurras.minecraftjsh.antlr.symbol.MethodSymbol;
-import io.github.seujorgenochurras.minecraftjsh.antlr.symbol.Type;
-import io.github.seujorgenochurras.minecraftjsh.antlr.symbol.VariableSymbol;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.MethodSymbol;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.Type;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.VariableSymbol;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.GlobalScope;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.LocalScope;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.Scope;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
-public class OnInvalidReference extends JavaParserBaseListener {
-    public ParseTreeProperty<Scope> scopes = new ParseTreeProperty<>();
-    public GlobalScope globals;
-    public Scope currentScope;
+public class ReferenceTreeDefiner extends JavaParserBaseListener {
+    private final ParseTreeProperty<Scope> scopes = new ParseTreeProperty<>();
+    private GlobalScope globalScope;
+    private Scope currentScope;
 
     @Override
     public void enterCompilationUnit(JavaParser.CompilationUnitContext ctx) {
-        globals = new GlobalScope(null);
-        currentScope = globals;
-    }
-
-    @Override
-    public void exitCompilationUnit(JavaParser.CompilationUnitContext ctx) {
-        System.out.println(globals);
+        globalScope = new GlobalScope(null);
+        currentScope = globalScope;
     }
 
     @Override
@@ -37,7 +32,7 @@ public class OnInvalidReference extends JavaParserBaseListener {
 
         MethodSymbol methodSymbol = new MethodSymbol(methodName, methodType, currentScope);
 
-        currentScope.define(methodSymbol);
+        currentScope.addSymbol(methodSymbol);
         saveScope(ctx, methodSymbol);
         currentScope = methodSymbol;
     }
@@ -57,11 +52,13 @@ public class OnInvalidReference extends JavaParserBaseListener {
     }
 
 
+    @Override
     public void enterBlock(JavaParser.BlockContext ctx) {
         currentScope = new LocalScope(currentScope);
         saveScope(ctx, currentScope);
     }
 
+    @Override
     public void exitBlock(JavaParser.BlockContext ctx) {
         currentScope = currentScope.getEnclosingScope(); // pop scope
     }
@@ -76,11 +73,18 @@ public class OnInvalidReference extends JavaParserBaseListener {
         String typeName = varDeclarationCtx.start.getText();
         String variableName = nameToken.getText();
 
-
         Type type = new Type(typeName, typeNumber);
 
         VariableSymbol variableSymbol = new VariableSymbol(variableName, type);
-        currentScope.define(variableSymbol);
+        currentScope.addSymbol(variableSymbol);
+    }
+
+    public ParseTreeProperty<Scope> getScopes() {
+        return scopes;
+    }
+
+    public GlobalScope getReferences() {
+        return globalScope;
     }
 
 }

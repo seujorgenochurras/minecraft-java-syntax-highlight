@@ -1,7 +1,7 @@
 package io.github.seujorgenochurras.minecraftjsh.antlr.minecraft;
 
 import io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer;
-import io.github.seujorgenochurras.minecraftjsh.antlr.listener.OnSyntaxError;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.OnSyntaxError;
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;

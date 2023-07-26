@@ -10,10 +10,5 @@ public final class MinecraftJsh extends JavaPlugin {
     public void onEnable() {
         getCommand("world").setExecutor(new KitCommand());
         getServer().getPluginManager().registerEvents(new OnLecternInteraction(), this);
-
-    }
-
-    @Override
-    public void onDisable() {
     }
 }
