@@ -1,7 +1,7 @@
 package io.github.seujorgenochurras.antlr;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer;
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.antlr.lexer.io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer;
+import io.github.seujorgenochurras.minecraftjsh.antlr.parser.io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -11,10 +11,10 @@ public class ParserTest {
         String code = "public class MeuPau {" +
                 "int a = j;" +
                 "}";
-        JavaLexer javaLexer = new JavaLexer(CharStreams.fromString(code));
+        io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer javaLexer = new io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer(CharStreams.fromString(code));
         CommonTokenStream commonTokenStream = new CommonTokenStream(javaLexer);
 
-        JavaParser parser = new JavaParser(commonTokenStream);
+        io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser parser = new io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser(commonTokenStream);
 
     }
 }

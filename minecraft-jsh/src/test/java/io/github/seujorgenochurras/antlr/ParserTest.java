@@ -2,14 +2,12 @@ package io.github.seujorgenochurras.antlr;
 
 import io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer;
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
-import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.ReferenceTreeDefiner;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.ReferenceTreeDefiner;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.OnUnknownReference;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.jupiter.api.Test;
-
-import java.sql.Ref;
 
 class ParserTest {
 
@@ -38,14 +36,15 @@ class ParserTest {
     void methodTypeTest() {
         String code = """
                 public class MeuPau {
-                int a = onDsable();
+               final int a = onDisable();
+                int j = 23;
                 public void onDisable(int h, int p, String s) {
                     }
                     public int onDsable() {
                     return 0;
                     }
                     public boolean onDisabe() {
-                        
+                      int aoiwd = 23;
                     }
                     public MeuPau onDisble() {
                     }
@@ -64,7 +63,6 @@ class ParserTest {
         OnUnknownReference unknownReference = new OnUnknownReference(referenceTree.getScopes(),
                 referenceTree.getReferences());
         walker.walk(unknownReference, tree);
-
 
     }
 

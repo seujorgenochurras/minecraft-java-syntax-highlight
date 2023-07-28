@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.syntax;
+package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference;
 
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParserBaseListener;
@@ -9,7 +9,6 @@ import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.GlobalScope;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.LocalScope;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.Scope;
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 public class ReferenceTreeDefiner extends JavaParserBaseListener {
@@ -26,7 +25,7 @@ public class ReferenceTreeDefiner extends JavaParserBaseListener {
     @Override
     public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
         String typeName = ctx.start.getText();
-        String methodName = ctx.identifier().getText();
+        String methodName = ctx.identifier().getText() + "()";
         int typeNumber = ctx.start.getType();
         Type methodType = new Type(typeName, typeNumber);
 
@@ -37,11 +36,6 @@ public class ReferenceTreeDefiner extends JavaParserBaseListener {
         currentScope = methodSymbol;
     }
 
-    @Override
-    public void exitVariableDeclarator(JavaParser.VariableDeclaratorContext ctx) {
-        defineVar(ctx.variableDeclaratorId(), ctx.start);
-    }
-
     private void saveScope(ParserRuleContext context, Scope scope) {
         scopes.put(context, scope);
     }
@@ -50,7 +44,6 @@ public class ReferenceTreeDefiner extends JavaParserBaseListener {
     public void exitMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
         currentScope = currentScope.getEnclosingScope();
     }
-
 
     @Override
     public void enterBlock(JavaParser.BlockContext ctx) {
@@ -65,17 +58,51 @@ public class ReferenceTreeDefiner extends JavaParserBaseListener {
 
     @Override
     public void exitFormalParameter(JavaParser.FormalParameterContext ctx) {
-        defineVar(ctx.variableDeclaratorId(), ctx.start);
+        defineVar(ctx);
     }
 
-    private void defineVar(JavaParser.VariableDeclaratorIdContext varDeclarationCtx, Token nameToken) {
-        int typeNumber = varDeclarationCtx.start.getType();
-        String typeName = varDeclarationCtx.start.getText();
-        String variableName = nameToken.getText();
+    @Override
+    public void exitFieldDeclaration(JavaParser.FieldDeclarationContext ctx) {
+        defineVar(ctx);
+    }
 
-        Type type = new Type(typeName, typeNumber);
+    @Override
+    public void exitLocalVariableDeclaration(JavaParser.LocalVariableDeclarationContext ctx) {
+        defineVar(ctx);
+    }
 
-        VariableSymbol variableSymbol = new VariableSymbol(variableName, type);
+    private void defineVar(JavaParser.LocalVariableDeclarationContext variableInitializerCtx) {
+        String varTypeName = variableInitializerCtx.typeType().getText();
+        int varTypeNumber = variableInitializerCtx.typeType().start.getType();
+        Type varType = new Type(varTypeName, varTypeNumber);
+
+        variableInitializerCtx.variableDeclarators().variableDeclarator().forEach(declarationCtx -> {
+            String varName = declarationCtx.variableDeclaratorId().start.getText();
+            defineVar(varName, varType);
+        });
+    }
+
+    private void defineVar(JavaParser.FieldDeclarationContext declarationContext) {
+        String varTypeName = declarationContext.typeType().getText();
+        int varTypeNumber = declarationContext.typeType().start.getType();
+        Type varType = new Type(varTypeName, varTypeNumber);
+
+        declarationContext.variableDeclarators().variableDeclarator().forEach(declarationCtx -> {
+            String varName = declarationCtx.variableDeclaratorId().start.getText();
+            defineVar(varName, varType);
+        });
+    }
+    private void defineVar(JavaParser.FormalParameterContext formalParameterContext) {
+        String varTypeName = formalParameterContext.typeType().getText();
+        int varTypeNumber = formalParameterContext.typeType().start.getType();
+        Type varType = new Type(varTypeName, varTypeNumber);
+
+        String varName = formalParameterContext.variableDeclaratorId().start.getText();
+        defineVar(varName, varType);
+    }
+
+    private void defineVar(String varName, Type varType) {
+        VariableSymbol variableSymbol = new VariableSymbol(varName, varType);
         currentScope.addSymbol(variableSymbol);
     }
 

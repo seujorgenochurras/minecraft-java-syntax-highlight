@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.lexer;// Generated from JavaLexer.g4 by ANTLR 4.13.0
+package io.github.seujorgenochurras.minecraftjsh.antlr.lexer;// Generated from io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer.g4 by ANTLR 4.13.0
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -157,7 +157,7 @@ public class JavaLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "JavaLexer.g4"; }
+	public String getGrammarFileName() { return "io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

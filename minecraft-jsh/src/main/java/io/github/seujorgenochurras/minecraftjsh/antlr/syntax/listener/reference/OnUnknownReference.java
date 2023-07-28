@@ -23,11 +23,10 @@ public class OnUnknownReference extends JavaParserBaseListener {
     public void exitVariableInitializer(JavaParser.VariableInitializerContext ctx) {
         String varName = ctx.start.getText();
         Symbol varSymbol = currentScope.findSymbol(varName);
-
         if(varSymbol == null) {
             System.err.println("Variable '" + varName + "' is not defined");
-        } else if (varSymbol instanceof MethodSymbol){
-            System.err.println("Variable '" + varName + "' is a method");
+        } else if (varSymbol instanceof MethodSymbol && (varSymbol.getType().typeName().equals("void"))){
+                System.err.println("Variable '" + varName + "' is a method");
         }
     }
 
@@ -55,4 +54,6 @@ public class OnUnknownReference extends JavaParserBaseListener {
     public void exitBlock(JavaParser.BlockContext ctx) {
         currentScope = currentScope.getEnclosingScope();
     }
+
+
 }

@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.parser;// Generated from JavaParser.g4 by ANTLR 4.13.0
+package io.github.seujorgenochurras.minecraftjsh.antlr.parser;// Generated from io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser.g4 by ANTLR 4.13.0
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -347,6 +347,18 @@ public class JavaParserBaseListener implements JavaParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFieldDeclaration(JavaParser.FieldDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGenericVariableDeclaration(JavaParser.GenericVariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGenericVariableDeclaration(JavaParser.GenericVariableDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
