@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.parser;// Generated from JavaParser.g4 by ANTLR 4.13.0
+package io.github.seujorgenochurras.minecraftjsh.antlr.parser;// Generated from io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser.g4 by ANTLR 4.13.0
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -286,6 +286,16 @@ public interface JavaParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFieldDeclaration(JavaParser.FieldDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaParser#genericVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGenericVariableDeclaration(JavaParser.GenericVariableDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaParser#genericVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGenericVariableDeclaration(JavaParser.GenericVariableDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#interfaceBodyDeclaration}.
 	 * @param ctx the parse tree

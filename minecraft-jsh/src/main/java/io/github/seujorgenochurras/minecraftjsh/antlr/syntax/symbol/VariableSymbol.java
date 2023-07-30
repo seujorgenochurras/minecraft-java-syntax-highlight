@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.symbol;
+package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol;
 
 public class VariableSymbol extends Symbol{
 

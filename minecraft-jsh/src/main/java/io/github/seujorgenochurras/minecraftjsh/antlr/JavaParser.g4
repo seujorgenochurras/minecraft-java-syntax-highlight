@@ -136,6 +136,7 @@ memberDeclaration
     | methodDeclaration
     | genericMethodDeclaration
     | fieldDeclaration
+    | genericVariableDeclaration
     | constructorDeclaration
     | genericConstructorDeclaration
     | interfaceDeclaration
@@ -183,6 +184,10 @@ compactConstructorDeclaration
 
 fieldDeclaration
     : typeType variableDeclarators ';'
+    ;
+
+genericVariableDeclaration:
+    variableModifier* (typeType | VAR) variableDeclarators ';'
     ;
 
 interfaceBodyDeclaration
@@ -450,6 +455,7 @@ block
 blockStatement
     : localVariableDeclaration ';'
     | localTypeDeclaration
+    | genericVariableDeclaration
     | statement
     ;
 
@@ -580,6 +586,8 @@ parExpression
 expressionList
     : expression (',' expression)*
     ;
+
+
 
 methodCall
     : (identifier | THIS | SUPER) arguments

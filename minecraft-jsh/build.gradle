@@ -26,7 +26,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
 
 }
-test{
+test {
     useJUnitPlatform()
 }
 def targetJavaVersion = 17
@@ -44,7 +44,6 @@ tasks.withType(JavaCompile).configureEach {
         options.release = targetJavaVersion
     }
 }
-
 processResources {
     def props = [version: version]
     inputs.properties props
@@ -53,3 +52,4 @@ processResources {
         expand props
     }
 }
+

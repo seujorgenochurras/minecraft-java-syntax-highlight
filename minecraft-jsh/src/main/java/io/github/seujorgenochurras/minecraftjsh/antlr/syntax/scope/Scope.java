@@ -1,6 +1,6 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.scope;
+package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.symbol.Symbol;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.Symbol;
 
 public interface Scope {
     String getScopeName();
@@ -13,10 +13,10 @@ public interface Scope {
     /**
      * Define a symbol in the current scope
      */
-    void define(Symbol sym);
+    void addSymbol(Symbol sym);
 
     /**
      * Look up name in this scope or in enclosing scope if not here
      */
-    Symbol resolve(String name);
+    Symbol findSymbol(String name);
 }

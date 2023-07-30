@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.antlr.listener;
+package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener;
 
 
 import org.antlr.v4.runtime.*;
