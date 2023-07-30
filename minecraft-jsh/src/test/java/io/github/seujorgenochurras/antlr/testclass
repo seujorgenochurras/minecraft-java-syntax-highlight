@@ -1,20 +1,43 @@
-package io.github.seujorgenochurras.antlr;
+package io.github.seujorgenochurras.minecraftjsh.antlr.context;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.lexer.io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer;
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.chain.DefaultValidator;
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.chain.ValidatorChainFactory;
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.exception.InvalidTypeException;
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.validator.ContextInstanceOf;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
+import org.antlr.v4.runtime.RuleContext;
+import org.jetbrains.annotations.Nullable;
 
-public class ParserTest {
-    int a = j;
-    void symbolNotFoundTest(){
-        String code = "public class MeuPau {" +
-                "int a = j;" +
-                "}";
-        io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer javaLexer = new io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer(CharStreams.fromString(code));
-        CommonTokenStream commonTokenStream = new CommonTokenStream(javaLexer);
+//TODO make this work
+public class GenericVariableContext extends RuleContext implements VariableContext {
+    private RuleContext ruleContext;
+    private JavaParser.TypeTypeContext typeTypeContext;
 
-        io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser parser = new io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser(commonTokenStream);
+    public GenericVariableContext(RuleContext ruleContext) {
+        validateRuleContext(ruleContext);
 
+        this.ruleContext = ruleContext;
+    }
+
+    private static final DefaultValidator<RuleContext> varContextValidator = ValidatorChainFactory.
+            onlyOneValid(new ContextInstanceOf(new JavaParser.VariableInitializerContext(null, 0)))
+            .addValidator(new ContextInstanceOf(new JavaParser.FormalParameterContext(null, 0)))
+            .addValidator(new ContextInstanceOf(new JavaParser.FieldDeclarationContext(null, 0)));
+
+    private void validateRuleContext(RuleContext ruleContext) {
+        if(!varContextValidator.validate(ruleContext)){
+            throw new InvalidTypeException("Rule context type is not a variable context");
+        }
+    }
+
+    @Override
+    public JavaParser.TypeTypeContext typeType() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public JavaParser.VariableDeclaratorsContext variableDeclarators() {
+        return null;
     }
 }

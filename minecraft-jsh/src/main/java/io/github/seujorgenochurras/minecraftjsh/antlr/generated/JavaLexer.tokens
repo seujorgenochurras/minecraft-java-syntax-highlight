@@ -1,3 +1,4 @@
+package io.github.seujorgenochurras.minecraftjsh.antlr.generated;
 ABSTRACT=1
 ASSERT=2
 BOOLEAN=3

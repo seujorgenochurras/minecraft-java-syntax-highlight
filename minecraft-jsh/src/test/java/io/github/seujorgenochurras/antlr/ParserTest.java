@@ -1,13 +1,17 @@
 package io.github.seujorgenochurras.antlr;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.lexer.JavaLexer;
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaLexer;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.ReferenceTreeDefiner;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.OnUnknownReference;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 class ParserTest {
 
@@ -25,7 +29,6 @@ class ParserTest {
 
         JavaParser parser = new JavaParser(commonTokenStream);
 
-
         parser.removeParseListeners();
         parser.addErrorListener(new OnBadSyntax());
 
@@ -33,11 +36,13 @@ class ParserTest {
     }
 
     @Test
-    void methodTypeTest() {
+    void methodTypeTest() throws IOException {
         String code = """
                 public class MeuPau {
-               final int a = onDisable();
+                final int a = onDisable();
                 int j = 23;
+                int k = 12;
+                
                 public void onDisable(int h, int p, String s) {
                     }
                     public int onDsable() {
@@ -49,6 +54,7 @@ class ParserTest {
                     public MeuPau onDisble() {
                     }
                     }""";
+
         JavaLexer javaLexer = new JavaLexer(CharStreams.fromString(code));
         CommonTokenStream commonTokenStream = new CommonTokenStream(javaLexer);
         JavaParser parser = new JavaParser(commonTokenStream);

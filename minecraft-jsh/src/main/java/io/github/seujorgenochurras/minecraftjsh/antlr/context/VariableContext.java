@@ -1,6 +1,7 @@
 package io.github.seujorgenochurras.minecraftjsh.antlr.context;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
+
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
 
 import javax.annotation.Nullable;
 

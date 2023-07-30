@@ -2,8 +2,8 @@ package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference
 
 import io.github.seujorgenochurras.minecraftjsh.antlr.context.FormalVariable;
 import io.github.seujorgenochurras.minecraftjsh.antlr.context.VariableContext;
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParserBaseListener;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParserBaseListener;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.MethodSymbol;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.Type;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.VariableSymbol;
@@ -12,6 +12,7 @@ import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.LocalScope;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.Scope;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
+import org.jetbrains.annotations.Nullable;
 
 public class ReferenceTreeDefiner extends JavaParserBaseListener {
     private final ParseTreeProperty<Scope> scopes = new ParseTreeProperty<>();
@@ -65,16 +66,17 @@ public class ReferenceTreeDefiner extends JavaParserBaseListener {
 
     @Override
     public void exitFieldDeclaration(JavaParser.FieldDeclarationContext ctx) {
-        defineVar(ctx);
+        defineVar(new GenericVariableContext(ctx));
     }
 
     @Override
     public void exitLocalVariableDeclaration(JavaParser.LocalVariableDeclarationContext ctx) {
-        defineVar(ctx);
+        defineVar(new GenericVariableContext(ctx));
     }
 
-    private void defineVar(FormalVariable variableContext) {
-        Type varType = getVarType(variableContext);
+    private void defineVar(JavaParser.FormalParameterContext variableContext) {
+        Type varType = getVarType(new GenericVariableContext(variableContext));
+
         String varName = variableContext.variableDeclaratorId().identifier().getText();
         defineVar(varName, varType);
     }
@@ -109,4 +111,43 @@ public class ReferenceTreeDefiner extends JavaParserBaseListener {
         return globalScope;
     }
 
+    //TODO make better code
+    private static final class GenericVariableContext implements FormalVariable {
+        private JavaParser.FormalParameterContext formalParameterContext;
+        private JavaParser.LocalVariableDeclarationContext localVariableDeclarationContext;
+        private JavaParser.FieldDeclarationContext fieldDeclarationContext;
+
+        public GenericVariableContext(JavaParser.FormalParameterContext formalParameterContext) {
+            this.formalParameterContext = formalParameterContext;
+        }
+
+        public GenericVariableContext(JavaParser.LocalVariableDeclarationContext localVariableDeclarationContext) {
+            this.localVariableDeclarationContext = localVariableDeclarationContext;
+        }
+
+        public GenericVariableContext(JavaParser.FieldDeclarationContext fieldDeclarationContext) {
+            this.fieldDeclarationContext = fieldDeclarationContext;
+        }
+
+        @Override
+        public JavaParser.TypeTypeContext typeType() {
+            if(formalParameterContext != null) return formalParameterContext.typeType();
+            if(localVariableDeclarationContext !=null ) return localVariableDeclarationContext.typeType();
+            return fieldDeclarationContext.typeType();
+        }
+
+        @Nullable
+        @Override
+        public JavaParser.VariableDeclaratorsContext variableDeclarators() {
+            if(formalParameterContext != null) return null;
+            if(localVariableDeclarationContext !=null ) return localVariableDeclarationContext.variableDeclarators();
+            return fieldDeclarationContext.variableDeclarators();
+        }
+
+        @Override
+        public JavaParser.VariableDeclaratorIdContext variableDeclaratorId() {
+            if(formalParameterContext == null) return null;
+            return formalParameterContext.variableDeclaratorId();
+        }
+    }
 }

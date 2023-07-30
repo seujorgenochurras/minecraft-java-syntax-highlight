@@ -1,7 +1,7 @@
 package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParserBaseListener;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParserBaseListener;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.MethodSymbol;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.Symbol;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.GlobalScope;
@@ -20,13 +20,13 @@ public class OnUnknownReference extends JavaParserBaseListener {
     }
 
     @Override
-    public void exitVariableInitializer(JavaParser.VariableInitializerContext ctx) {
+    public void exitVar(JavaParser.VarContext ctx) {
         String varName = ctx.start.getText();
         Symbol varSymbol = currentScope.findSymbol(varName);
-        if(varSymbol == null) {
+        if (varSymbol == null) {
             System.err.println("Variable '" + varName + "' is not defined");
-        } else if (varSymbol instanceof MethodSymbol && (varSymbol.getType().typeName().equals("void"))){
-                System.err.println("Variable '" + varName + "' is a method");
+        } else if (varSymbol instanceof MethodSymbol && (varSymbol.getType().typeName().equals("void"))) {
+            System.err.println("Variable '" + varName + "' is a method");
         }
     }
 
