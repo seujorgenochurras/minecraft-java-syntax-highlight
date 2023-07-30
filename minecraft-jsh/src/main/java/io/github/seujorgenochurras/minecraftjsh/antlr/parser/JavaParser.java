@@ -1,4 +1,6 @@
 package io.github.seujorgenochurras.minecraftjsh.antlr.parser;// Generated from io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser.g4 by ANTLR 4.13.0
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.FormalVariable;
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.VariableContext;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -2507,7 +2509,7 @@ public class JavaParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class FieldDeclarationContext extends ParserRuleContext {
+	public static class FieldDeclarationContext extends ParserRuleContext implements VariableContext{
 		public TypeTypeContext typeType() {
 			return getRuleContext(TypeTypeContext.class,0);
 		}
@@ -4279,7 +4281,7 @@ public class JavaParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class FormalParameterContext extends ParserRuleContext {
+	public static class FormalParameterContext extends ParserRuleContext implements FormalVariable {
 		public TypeTypeContext typeType() {
 			return getRuleContext(TypeTypeContext.class,0);
 		}
@@ -6649,7 +6651,7 @@ public class JavaParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class LocalVariableDeclarationContext extends ParserRuleContext {
+	public static class LocalVariableDeclarationContext extends ParserRuleContext implements VariableContext{
 		public TerminalNode VAR() { return getToken(JavaParser.VAR, 0); }
 		public IdentifierContext identifier() {
 			return getRuleContext(IdentifierContext.class,0);

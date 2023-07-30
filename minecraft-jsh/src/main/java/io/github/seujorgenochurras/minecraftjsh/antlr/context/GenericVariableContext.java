@@ -36,11 +36,6 @@ public class GenericVariableContext extends RuleContext implements VariableConte
         return null;
     }
 
-    @Override
-    public JavaParser.VariableDeclaratorIdContext variableDeclaratorId() {
-        return null;
-    }
-
     @Nullable
     @Override
     public JavaParser.VariableDeclaratorsContext variableDeclarators() {

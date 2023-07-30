@@ -1,5 +1,7 @@
 package io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference;
 
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.FormalVariable;
+import io.github.seujorgenochurras.minecraftjsh.antlr.context.VariableContext;
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
 import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParserBaseListener;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.MethodSymbol;
@@ -71,39 +73,32 @@ public class ReferenceTreeDefiner extends JavaParserBaseListener {
         defineVar(ctx);
     }
 
-    private void defineVar(JavaParser.LocalVariableDeclarationContext variableInitializerCtx) {
-        String varTypeName = variableInitializerCtx.typeType().getText();
-        int varTypeNumber = variableInitializerCtx.typeType().start.getType();
-        Type varType = new Type(varTypeName, varTypeNumber);
-
-        variableInitializerCtx.variableDeclarators().variableDeclarator().forEach(declarationCtx -> {
-            String varName = declarationCtx.variableDeclaratorId().start.getText();
-            defineVar(varName, varType);
-        });
-    }
-
-    private void defineVar(JavaParser.FieldDeclarationContext declarationContext) {
-        String varTypeName = declarationContext.typeType().getText();
-        int varTypeNumber = declarationContext.typeType().start.getType();
-        Type varType = new Type(varTypeName, varTypeNumber);
-
-        declarationContext.variableDeclarators().variableDeclarator().forEach(declarationCtx -> {
-            String varName = declarationCtx.variableDeclaratorId().start.getText();
-            defineVar(varName, varType);
-        });
-    }
-    private void defineVar(JavaParser.FormalParameterContext formalParameterContext) {
-        String varTypeName = formalParameterContext.typeType().getText();
-        int varTypeNumber = formalParameterContext.typeType().start.getType();
-        Type varType = new Type(varTypeName, varTypeNumber);
-
-        String varName = formalParameterContext.variableDeclaratorId().start.getText();
+    private void defineVar(FormalVariable variableContext) {
+        Type varType = getVarType(variableContext);
+        String varName = variableContext.variableDeclaratorId().identifier().getText();
         defineVar(varName, varType);
+    }
+
+    private void defineVar(VariableContext variableContext) {
+        Type varType = getVarType(variableContext);
+
+        assert variableContext.variableDeclarators() != null : "Var context cannot be null";
+
+        variableContext.variableDeclarators().variableDeclarator().forEach(declarationCtx -> {
+            String varName = declarationCtx.variableDeclaratorId().start.getText();
+            defineVar(varName, varType);
+        });
     }
 
     private void defineVar(String varName, Type varType) {
         VariableSymbol variableSymbol = new VariableSymbol(varName, varType);
         currentScope.addSymbol(variableSymbol);
+    }
+
+    private Type getVarType(VariableContext variableContext) {
+        String varTypeName = variableContext.typeType().getText();
+        int varTypeNumber = variableContext.typeType().start.getType();
+        return new Type(varTypeName, varTypeNumber);
     }
 
     public ParseTreeProperty<Scope> getScopes() {
