@@ -528,15 +528,89 @@ public interface JavaParserListener extends ParseTreeListener {
 	 */
 	void exitQualifiedName(JavaParser.QualifiedNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JavaParser#literal}.
+	 * Enter a parse tree produced by the {@code NumberIntegerLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterLiteral(JavaParser.LiteralContext ctx);
+	void enterNumberIntegerLiteral(JavaParser.NumberIntegerLiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JavaParser#literal}.
+	 * Exit a parse tree produced by the {@code NumberIntegerLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitLiteral(JavaParser.LiteralContext ctx);
+	void exitNumberIntegerLiteral(JavaParser.NumberIntegerLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NumberFloatLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberFloatLiteral(JavaParser.NumberFloatLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NumberFloatLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberFloatLiteral(JavaParser.NumberFloatLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CharLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterCharLiteral(JavaParser.CharLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CharLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitCharLiteral(JavaParser.CharLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code StringLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLiteral(JavaParser.StringLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code StringLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLiteral(JavaParser.StringLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BooleanLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanLiteral(JavaParser.BooleanLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BooleanLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanLiteral(JavaParser.BooleanLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NullLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterNullLiteral(JavaParser.NullLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NullLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitNullLiteral(JavaParser.NullLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TextBlockLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterTextBlockLiteral(JavaParser.TextBlockLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TextBlockLiteral}
+	 * labeled alternative in {@link JavaParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitTextBlockLiteral(JavaParser.TextBlockLiteralContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#integerLiteral}.
 	 * @param ctx the parse tree
@@ -998,317 +1072,15 @@ public interface JavaParserListener extends ParseTreeListener {
 	 */
 	void exitMethodCall(JavaParser.MethodCallContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code awpodakwpodawpo}
-	 * labeled alternative in {@link JavaParser#expression}.
+	 * Enter a parse tree produced by {@link JavaParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterAwpodakwpodawpo(JavaParser.AwpodakwpodawpoContext ctx);
+	void enterExpression(JavaParser.ExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code awpodakwpodawpo}
-	 * labeled alternative in {@link JavaParser#expression}.
+	 * Exit a parse tree produced by {@link JavaParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitAwpodakwpodawpo(JavaParser.AwpodakwpodawpoContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code aoiwjdoiasj}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAoiwjdoiasj(JavaParser.AoiwjdoiasjContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code aoiwjdoiasj}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAoiwjdoiasj(JavaParser.AoiwjdoiasjContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code zxczx}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterZxczx(JavaParser.ZxczxContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code zxczx}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitZxczx(JavaParser.ZxczxContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code zxczxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterZxczxc(JavaParser.ZxczxcContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code zxczxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitZxczxc(JavaParser.ZxczxcContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code aopiwdjaoiwjdao}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAopiwdjaoiwjdao(JavaParser.AopiwdjaoiwjdaoContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code aopiwdjaoiwjdao}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAopiwdjaoiwjdao(JavaParser.AopiwdjaoiwjdaoContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code aowidjaoiwjdaowj}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAowidjaoiwjdaowj(JavaParser.AowidjaoiwjdaowjContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code aowidjaoiwjdaowj}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAowidjaoiwjdaowj(JavaParser.AowidjaoiwjdaowjContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code paowid}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterPaowid(JavaParser.PaowidContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code paowid}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitPaowid(JavaParser.PaowidContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awdawda}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwdawda(JavaParser.AwdawdaContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awdawda}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwdawda(JavaParser.AwdawdaContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code aowidjoiaw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAowidjoiaw(JavaParser.AowidjoiawContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code aowidjoiaw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAowidjoiaw(JavaParser.AowidjoiawContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awhd}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwhd(JavaParser.AwhdContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awhd}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwhd(JavaParser.AwhdContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Aiowhdoaiw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAiowhdoaiw(JavaParser.AiowhdoaiwContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Aiowhdoaiw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAiowhdoaiw(JavaParser.AiowhdoaiwContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code aisjdoaisjdoijas}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAisjdoaisjdoijas(JavaParser.AisjdoaisjdoijasContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code aisjdoaisjdoijas}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAisjdoaisjdoijas(JavaParser.AisjdoaisjdoijasContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code zxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterZxc(JavaParser.ZxcContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code zxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitZxc(JavaParser.ZxcContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awdioauwoij}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwdioauwoij(JavaParser.AwdioauwoijContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awdioauwoij}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwdioauwoij(JavaParser.AwdioauwoijContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awdawaw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwdawaw(JavaParser.AwdawawContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awdawaw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwdawaw(JavaParser.AwdawawContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code apiwjdaowp}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterApiwjdaowp(JavaParser.ApiwjdaowpContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code apiwjdaowp}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitApiwjdaowp(JavaParser.ApiwjdaowpContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awopjda}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwopjda(JavaParser.AwopjdaContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awopjda}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwopjda(JavaParser.AwopjdaContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code dasdzxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterDasdzxc(JavaParser.DasdzxcContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code dasdzxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitDasdzxc(JavaParser.DasdzxcContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code AIW}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAIW(JavaParser.AIWContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code AIW}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAIW(JavaParser.AIWContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awd}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwd(JavaParser.AwdContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awd}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwd(JavaParser.AwdContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awdasdzxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwdasdzxc(JavaParser.AwdasdzxcContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awdasdzxc}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwdasdzxc(JavaParser.AwdasdzxcContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awjdoiajwjoidaw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwjdoiajwjoidaw(JavaParser.AwjdoiajwjoidawContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awjdoiajwjoidaw}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwjdoiajwjoidaw(JavaParser.AwjdoiajwjoidawContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awdjuoawij}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwdjuoawij(JavaParser.AwdjuoawijContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awdjuoawij}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwdjuoawij(JavaParser.AwdjuoawijContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code gfs}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterGfs(JavaParser.GfsContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code gfs}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitGfs(JavaParser.GfsContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code zsdasd}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterZsdasd(JavaParser.ZsdasdContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code zsdasd}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitZsdasd(JavaParser.ZsdasdContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code awoidua}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAwoidua(JavaParser.AwoiduaContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code awoidua}
-	 * labeled alternative in {@link JavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAwoidua(JavaParser.AwoiduaContext ctx);
+	void exitExpression(JavaParser.ExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#pattern}.
 	 * @param ctx the parse tree
@@ -1594,15 +1366,101 @@ public interface JavaParserListener extends ParseTreeListener {
 	 */
 	void exitTypeType(JavaParser.TypeTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JavaParser#primitiveType}.
+	 * Enter a parse tree produced by the {@code BoolPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrimitiveType(JavaParser.PrimitiveTypeContext ctx);
+	void enterBoolPrimitiveType(JavaParser.BoolPrimitiveTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JavaParser#primitiveType}.
+	 * Exit a parse tree produced by the {@code BoolPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrimitiveType(JavaParser.PrimitiveTypeContext ctx);
+	void exitBoolPrimitiveType(JavaParser.BoolPrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CharPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterCharPrimitiveType(JavaParser.CharPrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CharPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitCharPrimitiveType(JavaParser.CharPrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BytePrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterBytePrimitiveType(JavaParser.BytePrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BytePrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitBytePrimitiveType(JavaParser.BytePrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ShortPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterShortPrimitiveType(JavaParser.ShortPrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ShortPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitShortPrimitiveType(JavaParser.ShortPrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IntPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntPrimitiveType(JavaParser.IntPrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IntPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntPrimitiveType(JavaParser.IntPrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LongPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterLongPrimitiveType(JavaParser.LongPrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LongPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitLongPrimitiveType(JavaParser.LongPrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FloatPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatPrimitiveType(JavaParser.FloatPrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FloatPrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatPrimitiveType(JavaParser.FloatPrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DoublePrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterDoublePrimitiveType(JavaParser.DoublePrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DoublePrimitiveType}
+	 * labeled alternative in {@link JavaParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitDoublePrimitiveType(JavaParser.DoublePrimitiveTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#typeArguments}.
 	 * @param ctx the parse tree

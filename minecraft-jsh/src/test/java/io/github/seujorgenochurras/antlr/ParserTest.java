@@ -2,6 +2,7 @@ package io.github.seujorgenochurras.antlr;
 
 import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaLexer;
 import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.OnIncorrectLiteral;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.ReferenceTreeDefiner;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.OnUnknownReference;
 import org.antlr.v4.runtime.*;
@@ -14,6 +15,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 class ParserTest {
+    private static final String testFileCode;
+
+    private static final String massiveTestFileCode;
+
+    static {
+        try {
+            testFileCode = Files.readString(Path.of("src/test/java/io/github/seujorgenochurras/antlr/subject/testclass"));
+            massiveTestFileCode = Files.readString(Path.of("src/test/java/io/github/seujorgenochurras/antlr/subject/massiveTestClass"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Test
     void symbolNotFoundTest() {
@@ -36,13 +50,13 @@ class ParserTest {
     }
 
     @Test
-    void methodTypeTest() throws IOException {
+    void referenceTest() {
         String code = """
                 public class MeuPau {
                 final int a = onDisable();
                 int j = 23;
                 int k = 12;
-                
+
                 public void onDisable(int h, int p, String s) {
                     }
                     public int onDsable() {
@@ -67,8 +81,26 @@ class ParserTest {
         walker.walk(referenceTree, tree);
 
         OnUnknownReference unknownReference = new OnUnknownReference(referenceTree.getScopes(),
-                referenceTree.getReferences());
+                referenceTree.getReferences(), new TokenStreamRewriter(commonTokenStream));
         walker.walk(unknownReference, tree);
+
+    }
+
+    @Test
+    void literalTest(){
+        String code = testFileCode;
+
+        JavaLexer javaLexer = new JavaLexer(CharStreams.fromString(code));
+        CommonTokenStream commonTokenStream = new CommonTokenStream(javaLexer);
+        JavaParser parser = new JavaParser(commonTokenStream);
+
+        ParseTreeWalker walker = new ParseTreeWalker();
+
+        ParseTree tree = parser.compilationUnit();
+
+        OnIncorrectLiteral incorrectLiteral = new OnIncorrectLiteral(new TokenStreamRewriter(parser.getTokenStream()));
+
+        walker.walk(incorrectLiteral, tree);
 
     }
 

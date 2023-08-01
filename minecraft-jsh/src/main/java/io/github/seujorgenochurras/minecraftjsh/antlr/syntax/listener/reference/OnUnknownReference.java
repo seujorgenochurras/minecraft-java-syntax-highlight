@@ -6,6 +6,8 @@ import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.MethodSymbol
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.symbol.Symbol;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.GlobalScope;
 import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.scope.Scope;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStreamRewriter;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 public class OnUnknownReference extends JavaParserBaseListener {
@@ -14,19 +16,27 @@ public class OnUnknownReference extends JavaParserBaseListener {
 
     private Scope currentScope;
 
-    public OnUnknownReference(ParseTreeProperty<Scope> scopes, GlobalScope globalScope) {
+    private final TokenStreamRewriter rewriter;
+
+    private boolean isInsideVarInitialization = false;
+
+    public OnUnknownReference(ParseTreeProperty<Scope> scopes, GlobalScope globalScope, TokenStreamRewriter rewriter) {
         this.scopes = scopes;
         this.globalScope = globalScope;
+        this.rewriter = rewriter;
     }
 
     @Override
     public void exitVar(JavaParser.VarContext ctx) {
-        String varName = ctx.start.getText();
+        if(!isInsideVarInitialization) return;
+        Token varToken = ctx.start;
+        String varName = varToken.getText();
         Symbol varSymbol = currentScope.findSymbol(varName);
-        if (varSymbol == null) {
-            System.err.println("Variable '" + varName + "' is not defined");
-        } else if (varSymbol instanceof MethodSymbol && (varSymbol.getType().typeName().equals("void"))) {
-            System.err.println("Variable '" + varName + "' is a method");
+
+        if (varSymbol == null ||
+                varSymbol instanceof MethodSymbol && (varSymbol.getType().typeName().equals("void"))) {
+            rewriter.insertBefore(varToken, "§c§n");
+            rewriter.insertAfter(varToken, "§r");
         }
     }
 
@@ -55,5 +65,13 @@ public class OnUnknownReference extends JavaParserBaseListener {
         currentScope = currentScope.getEnclosingScope();
     }
 
+    @Override
+    public void enterVariableInitializer(JavaParser.VariableInitializerContext ctx) {
+        this.isInsideVarInitialization = true;
+    }
 
+    @Override
+    public void exitVariableInitializer(JavaParser.VariableInitializerContext ctx) {
+        this.isInsideVarInitialization = false;
+    }
 }

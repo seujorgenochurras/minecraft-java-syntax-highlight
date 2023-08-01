@@ -9,8 +9,8 @@ public class OnSyntaxError extends BaseErrorListener {
 
     private final Player player;
 
-    public OnSyntaxError(TokenStream tokenStream, Player player) {
-        this.rewriter = new TokenStreamRewriter(tokenStream);
+    public OnSyntaxError(TokenStreamRewriter rewriter, Player player) {
+        this.rewriter = rewriter;
         this.player = player;
     }
 

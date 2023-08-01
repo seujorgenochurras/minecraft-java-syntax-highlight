@@ -307,13 +307,13 @@ qualifiedName
     ;
 
 literal
-    : integerLiteral
-    | floatLiteral
-    | CHAR_LITERAL
-    | STRING_LITERAL
-    | BOOL_LITERAL
-    | NULL_LITERAL
-    | TEXT_BLOCK // Java17
+    : integerLiteral # NumberIntegerLiteral
+    | floatLiteral # NumberFloatLiteral
+    | CHAR_LITERAL # CharLiteral
+    | STRING_LITERAL # StringLiteral
+    | BOOL_LITERAL # BooleanLiteral
+    | NULL_LITERAL # NullLiteral
+    | TEXT_BLOCK # TextBlockLiteral // Java17
     ;
 
 integerLiteral
@@ -588,8 +588,8 @@ methodCall
 expression
     // Expression order in accordance with https://introcs.cs.princeton.edu/java/11precedence/
     // Level 16, Primary, array and member access
-    : primary # awopjda
-    | expression '[' expression ']' # awdjuoawij
+    : primary
+    | expression '[' expression ']'
     | expression bop='.'
       (
          identifier
@@ -598,45 +598,45 @@ expression
        | NEW nonWildcardTypeArguments? innerCreator
        | SUPER superSuffix
        | explicitGenericInvocation
-      ) # apiwjdaowp
+      )
     // Method calls and method references are part of primary, and hence level 16 precedence
-    | methodCall #awjdoiajwjoidaw
-    | expression '::' typeArguments? identifier #aopiwdjaoiwjdao
-    | typeType '::' (typeArguments? identifier | NEW) #awdasdzxc
-    | classType '::' typeArguments? NEW #awoidua
+    | methodCall
+    | expression '::' typeArguments? identifier
+    | typeType '::' (typeArguments? identifier | NEW)
+    | classType '::' typeArguments? NEW
 
-    | switchExpression #aoiwjdoiasj // Java17
+    | switchExpression  // Java17
 
     // Level 15 Post-increment/decrement operators
-    | expression postfix=('++' | '--') # aisjdoaisjdoijas
+    | expression postfix=('++' | '--')
 
     // Level 14, Unary operators
-    | prefix=('+'|'-'|'++'|'--'|'~'|'!') expression # awpodakwpodawpo
+    | prefix=('+'|'-'|'++'|'--'|'~'|'!') expression
 
     // Level 13 Cast and object creation
-    | '(' annotation* typeType ('&' typeType)* ')' expression # awdioauwoij
-    | NEW creator # aowidjaoiwjdaowj
+    | '(' annotation* typeType ('&' typeType)* ')' expression
+    | NEW creator
 
     // Level 12 to 1, Remaining operators
-    | expression bop=('*'|'/'|'%') expression #paowid // Level 12, Multiplicative operators
-    | expression bop=('+'|'-') expression  #gfs // Level 11, Additive operators
-    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression #zxc  // Level 10, Shift operators
-    | expression bop=('<=' | '>=' | '>' | '<') expression #zxczxc // Level 9, Relational operators
-    | expression bop=INSTANCEOF (typeType | pattern) #zxczx
-    | expression bop=('==' | '!=') expression # dasdzxc // Level 8, Equality Operators
-    | expression bop='&' expression # awdawda // Level 7, Bitwise AND
-    | expression bop='^' expression  #awd// Level 6, Bitwise XOR
-    | expression bop='|' expression  #awdawaw// Level 5, Bitwise OR
-    | expression bop='&&' expression  #awhd// Level 4, Logic AND
-    | expression bop='||' expression  #zsdasd// Level 3, Logic OR
-    | <assoc=right> expression bop='?' expression ':' expression  # Aiowhdoaiw// Level 2, Ternary
+    | expression bop=('*'|'/'|'%') expression // Level 12, Multiplicative operators
+    | expression bop=('+'|'-') expression  // Level 11, Additive operators
+    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression  // Level 10, Shift operators
+    | expression bop=('<=' | '>=' | '>' | '<') expression // Level 9, Relational operators
+    | expression bop=INSTANCEOF (typeType | pattern)
+    | expression bop=('==' | '!=') expression // Level 8, Equality Operators
+    | expression bop='&' expression  // Level 7, Bitwise AND
+    | expression bop='^' expression // Level 6, Bitwise XOR
+    | expression bop='|' expression // Level 5, Bitwise OR
+    | expression bop='&&' expression// Level 4, Logic AND
+    | expression bop='||' expression// Level 3, Logic OR
+    | <assoc=right> expression bop='?' expression ':' expression // Level 2, Ternary
     // Level 1, Assignment
     | <assoc=right> expression
       bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
-      expression # aowidjoiaw
+      expression
 
     // Level 0, Lambda Expression
-    | lambdaExpression # AIW // Java8
+    | lambdaExpression // Java8
     ;
 
 // Java17
@@ -751,14 +751,14 @@ typeType
     ;
 
 primitiveType
-    : BOOLEAN
-    | CHAR
-    | BYTE
-    | SHORT
-    | INT
-    | LONG
-    | FLOAT
-    | DOUBLE
+    : BOOLEAN # BoolPrimitiveType
+    | CHAR # CharPrimitiveType
+    | BYTE # BytePrimitiveType
+    | SHORT # ShortPrimitiveType
+    | INT # IntPrimitiveType
+    | LONG # LongPrimitiveType
+    | FLOAT # FloatPrimitiveType
+    | DOUBLE # DoublePrimitiveType
     ;
 
 typeArguments
