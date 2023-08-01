@@ -4,15 +4,14 @@ import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.chain.D
 import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.chain.ValidatorChainFactory;
 import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.exception.InvalidTypeException;
 import io.github.seujorgenochurras.minecraftjsh.antlr.context.validation.validator.ContextInstanceOf;
-import io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
 import org.antlr.v4.runtime.RuleContext;
-import static io.github.seujorgenochurras.minecraftjsh.antlr.parser.JavaParser.*;
 import org.jetbrains.annotations.Nullable;
 
 //TODO make this work
 public class GenericVariableContext extends RuleContext implements VariableContext {
     private RuleContext ruleContext;
-    private TypeTypeContext typeTypeContext;
+    private JavaParser.TypeTypeContext typeTypeContext;
 
     public GenericVariableContext(RuleContext ruleContext) {
         validateRuleContext(ruleContext);
@@ -21,9 +20,9 @@ public class GenericVariableContext extends RuleContext implements VariableConte
     }
 
     private static final DefaultValidator<RuleContext> varContextValidator = ValidatorChainFactory.
-            onlyOneValid(new ContextInstanceOf(new VariableInitializerContext(null, 0)))
-            .addValidator(new ContextInstanceOf(new FormalParameterContext(null, 0)))
-            .addValidator(new ContextInstanceOf(new FieldDeclarationContext(null, 0)));
+            onlyOneValid(new ContextInstanceOf(new JavaParser.VariableInitializerContext(null, 0)))
+            .addValidator(new ContextInstanceOf(new JavaParser.FormalParameterContext(null, 0)))
+            .addValidator(new ContextInstanceOf(new JavaParser.FieldDeclarationContext(null, 0)));
 
     private void validateRuleContext(RuleContext ruleContext) {
         if(!varContextValidator.validate(ruleContext)){
