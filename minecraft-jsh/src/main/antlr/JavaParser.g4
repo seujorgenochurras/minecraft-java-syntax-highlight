@@ -307,13 +307,13 @@ qualifiedName
     ;
 
 literal
-    : integerLiteral # NumberIntegerLiteral
-    | floatLiteral # NumberFloatLiteral
-    | CHAR_LITERAL # CharLiteral
-    | STRING_LITERAL # StringLiteral
-    | BOOL_LITERAL # BooleanLiteral
-    | NULL_LITERAL # NullLiteral
-    | TEXT_BLOCK # TextBlockLiteral // Java17
+    : integerLiteral
+    | floatLiteral
+    | CHAR_LITERAL
+    | STRING_LITERAL
+    | BOOL_LITERAL
+    | NULL_LITERAL
+    | TEXT_BLOCK //java 17
     ;
 
 integerLiteral

@@ -88,7 +88,7 @@ class ParserTest {
 
     @Test
     void literalTest(){
-        String code = testFileCode;
+        String code = massiveTestFileCode;
 
         JavaLexer javaLexer = new JavaLexer(CharStreams.fromString(code));
         CommonTokenStream commonTokenStream = new CommonTokenStream(javaLexer);
@@ -101,6 +101,7 @@ class ParserTest {
         OnIncorrectLiteral incorrectLiteral = new OnIncorrectLiteral(new TokenStreamRewriter(parser.getTokenStream()));
 
         walker.walk(incorrectLiteral, tree);
+
 
     }
 

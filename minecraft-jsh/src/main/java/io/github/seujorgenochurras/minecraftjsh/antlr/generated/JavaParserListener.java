@@ -528,89 +528,15 @@ public interface JavaParserListener extends ParseTreeListener {
 	 */
 	void exitQualifiedName(JavaParser.QualifiedNameContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code NumberIntegerLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
+	 * Enter a parse tree produced by {@link JavaParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumberIntegerLiteral(JavaParser.NumberIntegerLiteralContext ctx);
+	void enterLiteral(JavaParser.LiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code NumberIntegerLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
+	 * Exit a parse tree produced by {@link JavaParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumberIntegerLiteral(JavaParser.NumberIntegerLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code NumberFloatLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumberFloatLiteral(JavaParser.NumberFloatLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NumberFloatLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumberFloatLiteral(JavaParser.NumberFloatLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code CharLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterCharLiteral(JavaParser.CharLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code CharLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitCharLiteral(JavaParser.CharLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code StringLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringLiteral(JavaParser.StringLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code StringLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringLiteral(JavaParser.StringLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code BooleanLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanLiteral(JavaParser.BooleanLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BooleanLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanLiteral(JavaParser.BooleanLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code NullLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterNullLiteral(JavaParser.NullLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NullLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitNullLiteral(JavaParser.NullLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code TextBlockLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterTextBlockLiteral(JavaParser.TextBlockLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code TextBlockLiteral}
-	 * labeled alternative in {@link JavaParser#literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitTextBlockLiteral(JavaParser.TextBlockLiteralContext ctx);
+	void exitLiteral(JavaParser.LiteralContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#integerLiteral}.
 	 * @param ctx the parse tree

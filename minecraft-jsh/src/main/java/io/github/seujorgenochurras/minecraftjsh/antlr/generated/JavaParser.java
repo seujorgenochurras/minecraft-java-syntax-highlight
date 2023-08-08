@@ -4544,109 +4544,28 @@ public class JavaParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class LiteralContext extends ParserRuleContext {
+		public IntegerLiteralContext integerLiteral() {
+			return getRuleContext(IntegerLiteralContext.class,0);
+		}
+		public FloatLiteralContext floatLiteral() {
+			return getRuleContext(FloatLiteralContext.class,0);
+		}
+		public TerminalNode CHAR_LITERAL() { return getToken(JavaParser.CHAR_LITERAL, 0); }
+		public TerminalNode STRING_LITERAL() { return getToken(JavaParser.STRING_LITERAL, 0); }
+		public TerminalNode BOOL_LITERAL() { return getToken(JavaParser.BOOL_LITERAL, 0); }
+		public TerminalNode NULL_LITERAL() { return getToken(JavaParser.NULL_LITERAL, 0); }
+		public TerminalNode TEXT_BLOCK() { return getToken(JavaParser.TEXT_BLOCK, 0); }
 		public LiteralContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_literal; }
-	 
-		public LiteralContext() { }
-		public void copyFrom(LiteralContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class NumberFloatLiteralContext extends LiteralContext {
-		public FloatLiteralContext floatLiteral() {
-			return getRuleContext(FloatLiteralContext.class,0);
-		}
-		public NumberFloatLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterNumberFloatLiteral(this);
+			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterLiteral(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitNumberFloatLiteral(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class CharLiteralContext extends LiteralContext {
-		public TerminalNode CHAR_LITERAL() { return getToken(JavaParser.CHAR_LITERAL, 0); }
-		public CharLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterCharLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitCharLiteral(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class StringLiteralContext extends LiteralContext {
-		public TerminalNode STRING_LITERAL() { return getToken(JavaParser.STRING_LITERAL, 0); }
-		public StringLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterStringLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitStringLiteral(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class BooleanLiteralContext extends LiteralContext {
-		public TerminalNode BOOL_LITERAL() { return getToken(JavaParser.BOOL_LITERAL, 0); }
-		public BooleanLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterBooleanLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitBooleanLiteral(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class NumberIntegerLiteralContext extends LiteralContext {
-		public IntegerLiteralContext integerLiteral() {
-			return getRuleContext(IntegerLiteralContext.class,0);
-		}
-		public NumberIntegerLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterNumberIntegerLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitNumberIntegerLiteral(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class NullLiteralContext extends LiteralContext {
-		public TerminalNode NULL_LITERAL() { return getToken(JavaParser.NULL_LITERAL, 0); }
-		public NullLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterNullLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitNullLiteral(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class TextBlockLiteralContext extends LiteralContext {
-		public TerminalNode TEXT_BLOCK() { return getToken(JavaParser.TEXT_BLOCK, 0); }
-		public TextBlockLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).enterTextBlockLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitTextBlockLiteral(this);
+			if ( listener instanceof JavaParserListener ) ((JavaParserListener)listener).exitLiteral(this);
 		}
 	}
 
@@ -4661,7 +4580,6 @@ public class JavaParser extends Parser {
 			case HEX_LITERAL:
 			case OCT_LITERAL:
 			case BINARY_LITERAL:
-				_localctx = new NumberIntegerLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(801);
@@ -4670,7 +4588,6 @@ public class JavaParser extends Parser {
 				break;
 			case FLOAT_LITERAL:
 			case HEX_FLOAT_LITERAL:
-				_localctx = new NumberFloatLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(802);
@@ -4678,7 +4595,6 @@ public class JavaParser extends Parser {
 				}
 				break;
 			case CHAR_LITERAL:
-				_localctx = new CharLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(803);
@@ -4686,7 +4602,6 @@ public class JavaParser extends Parser {
 				}
 				break;
 			case STRING_LITERAL:
-				_localctx = new StringLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(804);
@@ -4694,7 +4609,6 @@ public class JavaParser extends Parser {
 				}
 				break;
 			case BOOL_LITERAL:
-				_localctx = new BooleanLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(805);
@@ -4702,7 +4616,6 @@ public class JavaParser extends Parser {
 				}
 				break;
 			case NULL_LITERAL:
-				_localctx = new NullLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(806);
@@ -4710,7 +4623,6 @@ public class JavaParser extends Parser {
 				}
 				break;
 			case TEXT_BLOCK:
-				_localctx = new TextBlockLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(807);

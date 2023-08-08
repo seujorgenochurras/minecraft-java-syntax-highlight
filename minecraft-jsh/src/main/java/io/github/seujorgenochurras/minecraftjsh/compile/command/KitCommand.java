@@ -1,4 +1,4 @@
-package io.github.seujorgenochurras.minecraftjsh.command;
+package io.github.seujorgenochurras.minecraftjsh.compile.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

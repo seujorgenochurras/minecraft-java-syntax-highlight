@@ -4,6 +4,10 @@ main: io.github.seujorgenochurras.minecraftjsh.MinecraftJsh
 api-version: '1.20'
 
 commands:
+  javac:
+      description: "Compiles your java book in java bytecode"
+      usage: /<command>
+
   world:
     description: gives you power
     usage: /<command>

@@ -53,7 +53,7 @@ public class OnIncorrectLiteral extends JavaParserBaseListener {
         return null;
     }
 
-    public Literal getExpectedLiteral() {
-        return expectedLiteral;
+    public TokenStreamRewriter getRewriter() {
+        return rewriter;
     }
 }

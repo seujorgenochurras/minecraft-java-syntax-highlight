@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.inventory.meta.BookMeta;
 
 
-public class OnLecternInteraction implements Listener {
+public class OnPlayerWroteBook implements Listener {
 
     @EventHandler
     @SuppressWarnings("UnstableApiUsage")
