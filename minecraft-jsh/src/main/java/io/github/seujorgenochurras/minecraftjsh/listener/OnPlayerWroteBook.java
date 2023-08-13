@@ -1,6 +1,6 @@
 package io.github.seujorgenochurras.minecraftjsh.listener;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.minecraft.MinecraftSyntaxHighlight;
+import io.github.seujorgenochurras.minecraftjsh.java.antlr.minecraft.MinecraftSyntaxHighlight;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerEditBookEvent;

@@ -1,10 +1,10 @@
 package io.github.seujorgenochurras.antlr;
 
-import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaLexer;
-import io.github.seujorgenochurras.minecraftjsh.antlr.generated.JavaParser;
-import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.OnIncorrectLiteral;
-import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.ReferenceTreeDefiner;
-import io.github.seujorgenochurras.minecraftjsh.antlr.syntax.listener.reference.OnUnknownReference;
+import io.github.seujorgenochurras.minecraftjsh.java.antlr.generated.JavaLexer;
+import io.github.seujorgenochurras.minecraftjsh.java.antlr.generated.JavaParser;
+import io.github.seujorgenochurras.minecraftjsh.java.antlr.syntax.listener.OnIncorrectLiteral;
+import io.github.seujorgenochurras.minecraftjsh.java.antlr.syntax.listener.reference.ReferenceTreeDefiner;
+import io.github.seujorgenochurras.minecraftjsh.java.antlr.syntax.listener.reference.OnUnknownReference;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;

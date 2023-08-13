@@ -7,6 +7,9 @@ commands:
   javac:
       description: "Compiles your java book in java bytecode"
       usage: /<command>
+  java:
+    description: "runs java"
+    usage: /<java>
 
   world:
     description: gives you power
