@@ -1,0 +1,18 @@
+name: minecraft-jsh
+version: '${version}'
+main: io.github.seujorgenochurras.minecraftjsh.MinecraftJsh
+api-version: '1.20'
+
+commands:
+  javac:
+      description: "Compiles your java book in java bytecode"
+      usage: /<command>
+  java:
+    description: "runs java"
+    usage: /<java> [-jar | -test]
+  java -jar:
+    description: "run a jar file"
+    usage: /<java> -jar
+  world:
+    description: gives you power
+    usage: /<command>
